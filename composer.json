@@ -1,0 +1,16 @@
+{
+  "name": "premmerce/prior",
+  "description": "Prior theme",
+  "authors": [
+    {
+      "name": "Premmerce",
+      "email": "andriy@siteimage.com.ua"
+    }
+  ],
+  "require": {},
+  "autoload": {
+    "psr-4": {
+      "Prior\\": "./inc"
+    }
+  }
+}
