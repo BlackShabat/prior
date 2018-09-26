@@ -15,7 +15,7 @@ class Enqueue
     public function enqueue_scripts()
     {
         /* Add main theme scripts and styles */
-        wp_enqueue_style('prior', get_template_directory_uri() . '/dist/style.css', [], '1.0.0', 'all');
-        wp_enqueue_script('prior', get_template_directory_uri() . '/dist/bundle.js', [], '1.0.0', true);
+        wp_enqueue_style('prior', get_template_directory_uri() . '/dist/css/style.css', [], '1.0.0', 'all');
+        wp_enqueue_script('prior', get_template_directory_uri() . '/dist/js/app.js', [], '1.0.0', true);
     }
 }

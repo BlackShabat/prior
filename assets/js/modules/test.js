@@ -1,0 +1,1 @@
+export const test = 'this is the test2';
