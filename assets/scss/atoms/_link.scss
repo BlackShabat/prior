@@ -1,0 +1,9 @@
+/* General link style */
+a {
+  text-decoration: underline;
+  color: steelblue;
+
+  &:hover {
+    color: lighten(steelblue, 0.2);
+  }
+}
