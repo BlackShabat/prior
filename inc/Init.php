@@ -11,7 +11,8 @@ class Init
     private static $services = [
         Setup\Setup::class,
         Setup\Enqueue::class,
-        Plugins\Woocommerce::class
+        Plugins\Woocommerce::class,
+	    Settings\Admin::class
     ];
 
     /**
