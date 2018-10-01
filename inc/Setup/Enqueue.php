@@ -4,10 +4,13 @@ namespace Prior\Setup;
 
 class Enqueue
 {
+    public function __construct() {
+        $this->registerHooks();
+    }
     /**
      * Register hooks and actions
      */
-    public function register()
+    public function registerHooks()
     {
         add_action('wp_enqueue_scripts', array($this, 'enqueue_scripts'));
     }

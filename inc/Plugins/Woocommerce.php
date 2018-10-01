@@ -4,10 +4,13 @@ namespace Prior\Plugins;
 
 class Woocommerce
 {
+    public function __construct() {
+        $this->registerHooks();
+    }
     /**
      * Register hooks and actions
      */
-    public function register()
+    public function registerHooks()
     {
         add_action('after_setup_theme', [$this, 'setup']);
 

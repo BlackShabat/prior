@@ -1,16 +1,14 @@
 <?php
 /**
  * Settings API
- *
- * @package awps
  */
 
-namespace Prior\Setup;
+namespace Prior\Settings;
 
 /**
  * Settings API Class
  */
-class Settings {
+class SettingsApi {
 	/**
 	 * Settings array
 	 */
@@ -51,13 +49,7 @@ class Settings {
 	 */
 	public $adminSubpages = array();
 
-	/**
-	 * Constructor
-	 */
-	public function __construct() {
-	}
-
-	public function register() {
+	public function registerHooks() {
 
 		if ( ! empty( $this->enqueues ) ) {
 			add_action( 'admin_enqueue_scripts', array( $this, 'adminScripts' ) );

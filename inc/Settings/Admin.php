@@ -2,34 +2,43 @@
 
 namespace Prior\Settings;
 
-use Prior\Setup\Settings;
+class Admin
+{
+    /**
+     * Store a new instance of the Settings API Class
+     */
+    private $settings;
 
-class Admin extends Settings {
-	public function __construct() {
-		$this->adminPages();
-		parent::register();
-	}
+    /**
+     * Constructor
+     */
+    public function __construct()
+    {
+        $this->settings = new SettingsApi();
+        $this->adminPages();
+        $this->settings->registerHooks();
+    }
 
-	public function register() {
-	}
+    /**
+     * Register admin pages and subpages at once
+     */
+    private function adminPages()
+    {
+        /* Multiple admin pages */
+        $pages = [
+            [
+                'pageTitle' => 'Theme Options',
+                'menuTitle' => 'Theme Options',
+                'capability' => 'manage_options',
+                'menuSlug' => 'store',
+                'callback' => function () {
+                    echo '<div><h1>Store Admin Page</h1></div>';
+                },
+                'iconUrl' => 'dashicons-store',
+                'position' => 110
+            ]
+        ];
 
-	private function adminPages() {
-
-		/* Multiple admin pages */
-		$args = [
-			[
-				'pageTitle'  => 'Theme Options',
-				'menuTitle'  => 'Theme Options',
-				'capability' => 'manage_options',
-				'menuSlug'   => 'store',
-				'callback'   => function () {
-					echo '<div><h1>Store Admin Page</h1></div>';
-				},
-				'iconUrl'    => 'dashicons-store',
-				'position'   => 110
-			]
-		];
-
-		parent::addPages( $args );
-	}
+        $this->settings->addPages($pages);
+    }
 }

@@ -21,9 +21,8 @@ class Init
     public static function register_services()
     {
         foreach (self::$services as $class) {
-            $service = new $class();
-            if (method_exists($service, 'register')) {
-                $service->register();
+            if(class_exists($class)) {
+                new $class();
             }
         }
     }
