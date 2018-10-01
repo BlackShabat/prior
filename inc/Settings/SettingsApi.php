@@ -183,11 +183,11 @@ class SettingsApi {
 	 * Call WordPress methods to generate Admin pages and subpages
 	 */
 	public function addAdminMenu() {
-		foreach ($this->adminPages as $page ) {
+		foreach ( $this->adminPages as $page ) {
 			add_menu_page( $page['pageTitle'], $page['menuTitle'], $page['capability'], $page['menuSlug'], $page['callback'], $page['iconUrl'], $page['position'] );
 		}
 
-		foreach ($this->adminSubpages as $page ) {
+		foreach ( $this->adminSubpages as $page ) {
 			add_submenu_page( $page['parentSlug'], $page['pageTitle'], $page['menuTitle'], $page['capability'], $page['menuSlug'], $page['callback'] );
 		}
 	}

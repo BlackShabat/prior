@@ -2,30 +2,28 @@
 
 namespace Prior\Plugins;
 
-class Woocommerce
-{
-    public function __construct() {
-        $this->registerHooks();
-    }
-    /**
-     * Register hooks and actions
-     */
-    public function registerHooks()
-    {
-        add_action('after_setup_theme', [$this, 'setup']);
+class Woocommerce {
+	public function __construct() {
+		$this->registerHooks();
+	}
 
-        /* Remove default woocommerce styles */
-        add_filter('woocommerce_enqueue_styles', '__return_empty_array');
-    }
+	/**
+	 * Register hooks and actions
+	 */
+	public function registerHooks() {
+		add_action( 'after_setup_theme', [ $this, 'setup' ] );
 
-    public function setup()
-    {
-        /* Declaring WooCommerce support in themes */
-        add_theme_support('woocommerce');
+		/* Remove default woocommerce styles */
+		add_filter( 'woocommerce_enqueue_styles', '__return_empty_array' );
+	}
 
-        /* Enable WooCommerce Product Gallery, Zoom & Lightbox (v3.0+) */
-        add_theme_support('wc-product-gallery-slider');
-        add_theme_support('wc-product-gallery-zoom');
-        add_theme_support('wc-product-gallery-lightbox');
-    }
+	public function setup() {
+		/* Declaring WooCommerce support in themes */
+		add_theme_support( 'woocommerce' );
+
+		/* Enable WooCommerce Product Gallery, Zoom & Lightbox (v3.0+) */
+		add_theme_support( 'wc-product-gallery-slider' );
+		add_theme_support( 'wc-product-gallery-zoom' );
+		add_theme_support( 'wc-product-gallery-lightbox' );
+	}
 }
