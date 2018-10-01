@@ -5,7 +5,7 @@
  * @package awps
  */
 
-namespace Prior\Settings;
+namespace Prior\Setup;
 
 /**
  * Settings API Class
@@ -29,7 +29,7 @@ class Settings {
 	/**
 	 * Script path
 	 */
-	public $script_path;
+	public $scriptPath;
 
 	/**
 	 * Enqueues array
@@ -39,17 +39,17 @@ class Settings {
 	/**
 	 * Admin pages array to enqueue scripts
 	 */
-	public $enqueue_on_pages = array();
+	public $enqueueOnPages = array();
 
 	/**
 	 * Admin pages array
 	 */
-	public $admin_pages = array();
+	public $adminPages = array();
 
 	/**
 	 * Admin subpages array
 	 */
-	public $admin_subpages = array();
+	public $adminSubpages = array();
 
 	/**
 	 * Constructor
@@ -60,15 +60,15 @@ class Settings {
 	public function register() {
 
 		if ( ! empty( $this->enqueues ) ) {
-			add_action( 'admin_enqueue_scripts', array( $this, 'admin_scripts' ) );
+			add_action( 'admin_enqueue_scripts', array( $this, 'adminScripts' ) );
 		}
 
-		if ( ! empty( $this->admin_pages ) || ! empty( $this->admin_subpages ) ) {
-			add_action( 'admin_menu', array( $this, 'add_admin_menu' ) );
+		if ( ! empty( $this->adminPages ) || ! empty( $this->adminSubpages ) ) {
+			add_action( 'admin_menu', array( $this, 'addAdminMenu' ) );
 		}
 
 		if ( ! empty( $this->settings ) ) {
-			add_action( 'admin_init', array( $this, 'register_custom_settings' ) );
+			add_action( 'admin_init', array( $this, 'registerCustomSettings' ) );
 		}
 	}
 
@@ -80,7 +80,7 @@ class Settings {
 	 *
 	 * @return  $this | void instance;
 	 */
-	public function admin_enqueue( $scripts = array(), $pages = array() ) {
+	public function adminEnqueue( $scripts = array(), $pages = array() ) {
 		if ( empty( $scripts ) ) {
 			return;
 		}
@@ -88,13 +88,13 @@ class Settings {
 		$i = 0;
 		foreach ( $scripts as $key => $value ) :
 			foreach ( $value as $val ):
-				$this->enqueues[ $i ] = $this->enqueue_script( $val, $key );
+				$this->enqueues[ $i ] = $this->enqueueScript( $val, $key );
 				$i ++;
 			endforeach;
 		endforeach;
 
 		if ( ! empty( $pages ) ) :
-			$this->enqueue_on_pages = $pages;
+			$this->enqueueOnPages = $pages;
 		endif;
 
 		return $this;
@@ -108,7 +108,7 @@ class Settings {
 	 *
 	 * @return array | string functions
 	 */
-	private function enqueue_script( $script, $type ) {
+	private function enqueueScript( $script, $type ) {
 		if ( $script === 'media_uploader' ) {
 			return 'wp_enqueue_media';
 		}
@@ -121,11 +121,11 @@ class Settings {
 	 *
 	 * @param  string $hook page id or filename passed by admin_enqueue_scripts
 	 */
-	public function admin_scripts( $hook ) {
+	public function adminScripts( $hook ) {
 		// dd( $hook );
-		$this->enqueue_on_pages = ( ! empty( $this->enqueue_on_pages ) ) ? $this->enqueue_on_pages : array( $hook );
+		$this->enqueueOnPages = ( ! empty( $this->enqueueOnPages ) ) ? $this->enqueueOnPages : array( $hook );
 
-		if ( in_array( $hook, $this->enqueue_on_pages ) ) :
+		if ( in_array( $hook, $this->enqueueOnPages ) ) :
 			foreach ( $this->enqueues as $enqueue ) :
 				if ( $enqueue === 'wp_enqueue_media' ) :
 					$enqueue();
@@ -146,17 +146,17 @@ class Settings {
 	 * @return $this
 	 */
 	public function addPages( $pages ) {
-		$this->admin_pages = $pages;
+		$this->adminPages = $pages;
 
 		return $this;
 	}
 
 	public function withSubPage( $title = null ) {
-		if ( empty( $this->admin_pages ) ) {
+		if ( empty( $this->adminPages ) ) {
 			return $this;
 		}
 
-		$adminPage = $this->admin_pages[0];
+		$adminPage = $this->adminPages[0];
 
 		$subpage = array(
 			array(
@@ -169,7 +169,7 @@ class Settings {
 			)
 		);
 
-		$this->admin_subpages = $subpage;
+		$this->adminSubpages = $subpage;
 
 		return $this;
 	}
@@ -182,7 +182,7 @@ class Settings {
 	 * @return $this
 	 */
 	public function addSubPages( $pages ) {
-		$this->admin_subpages = ( count( $this->admin_subpages ) == 0 ) ? $pages : array_merge( $this->admin_subpages, $pages );
+		$this->adminSubpages = ( count( $this->adminSubpages ) == 0 ) ? $pages : array_merge( $this->adminSubpages, $pages );
 
 		return $this;
 	}
@@ -190,12 +190,12 @@ class Settings {
 	/**
 	 * Call WordPress methods to generate Admin pages and subpages
 	 */
-	public function add_admin_menu() {
-		foreach ( $this->admin_pages as $page ) {
+	public function addAdminMenu() {
+		foreach ($this->adminPages as $page ) {
 			add_menu_page( $page['pageTitle'], $page['menuTitle'], $page['capability'], $page['menuSlug'], $page['callback'], $page['iconUrl'], $page['position'] );
 		}
 
-		foreach ( $this->admin_subpages as $page ) {
+		foreach ($this->adminSubpages as $page ) {
 			add_submenu_page( $page['parentSlug'], $page['pageTitle'], $page['menuTitle'], $page['capability'], $page['menuSlug'], $page['callback'] );
 		}
 	}
@@ -207,7 +207,7 @@ class Settings {
 	 *
 	 * @return $this
 	 */
-	public function add_settings( $args ) {
+	public function addSettings( $args ) {
 		$this->settings = $args;
 
 		return $this;
@@ -220,7 +220,7 @@ class Settings {
 	 *
 	 * @return $this
 	 */
-	public function add_sections( $args ) {
+	public function addSections( $args ) {
 		$this->sections = $args;
 
 		return $this;
@@ -233,7 +233,7 @@ class Settings {
 	 *
 	 * @return $this
 	 */
-	public function add_fields( $args ) {
+	public function addFields( $args ) {
 		$this->fields = $args;
 
 		return $this;
@@ -242,7 +242,7 @@ class Settings {
 	/**
 	 * Call WordPress methods to register settings, sections, and fields
 	 */
-	public function register_custom_settings() {
+	public function registerCustomSettings() {
 		foreach ( $this->settings as $setting ) {
 			register_setting( $setting["option_group"], $setting["option_name"], ( isset( $setting["callback"] ) ? $setting["callback"] : '' ) );
 		}

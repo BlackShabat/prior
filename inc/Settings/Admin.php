@@ -2,6 +2,8 @@
 
 namespace Prior\Settings;
 
+use Prior\Setup\Settings;
+
 class Admin extends Settings {
 	public function __construct() {
 		$this->adminPages();
