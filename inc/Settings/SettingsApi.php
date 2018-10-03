@@ -12,17 +12,17 @@ class SettingsApi {
 	/**
 	 * Settings array
 	 */
-	public $settings = array();
+	public $settings = [];
 
 	/**
 	 * Sections array
 	 */
-	public $sections = array();
+	public $sections = [];
 
 	/**
 	 * Fields array
 	 */
-	public $fields = array();
+	public $fields = [];
 
 	/**
 	 * Script path
@@ -32,35 +32,35 @@ class SettingsApi {
 	/**
 	 * Enqueues array
 	 */
-	public $enqueues = array();
+	public $enqueues = [];
 
 	/**
 	 * Admin pages array to enqueue scripts
 	 */
-	public $enqueueOnPages = array();
+	public $enqueueOnPages = [];
 
 	/**
 	 * Admin pages array
 	 */
-	public $adminPages = array();
+	public $adminPages = [];
 
 	/**
 	 * Admin subpages array
 	 */
-	public $adminSubpages = array();
+	public $adminSubpages = [];
 
 	public function registerHooks() {
 
 		if ( ! empty( $this->enqueues ) ) {
-			add_action( 'admin_enqueue_scripts', array( $this, 'adminScripts' ) );
+			add_action( 'admin_enqueue_scripts', [ $this, 'adminScripts' ] );
 		}
 
 		if ( ! empty( $this->adminPages ) || ! empty( $this->adminSubpages ) ) {
-			add_action( 'admin_menu', array( $this, 'addAdminMenu' ) );
+			add_action( 'admin_menu', [ $this, 'addAdminMenu' ] );
 		}
 
 		if ( ! empty( $this->settings ) ) {
-			add_action( 'admin_init', array( $this, 'registerCustomSettings' ) );
+			add_action( 'admin_init', [ $this, 'registerCustomSettings' ] );
 		}
 	}
 
@@ -72,7 +72,7 @@ class SettingsApi {
 	 *
 	 * @return  $this | void instance;
 	 */
-	public function adminEnqueue( $scripts = array(), $pages = array() ) {
+	public function adminEnqueue( $scripts = [], $pages = [] ) {
 		if ( empty( $scripts ) ) {
 			return;
 		}
@@ -105,7 +105,7 @@ class SettingsApi {
 			return 'wp_enqueue_media';
 		}
 
-		return ( $type === 'style' ) ? array( 'wp_enqueue_style' => $script ) : array( 'wp_enqueue_script' => $script );
+		return ( $type === 'style' ) ? [ 'wp_enqueue_style' => $script ] : [ 'wp_enqueue_script' => $script ];
 	}
 
 	/**
@@ -115,7 +115,7 @@ class SettingsApi {
 	 */
 	public function adminScripts( $hook ) {
 		// dd( $hook );
-		$this->enqueueOnPages = ( ! empty( $this->enqueueOnPages ) ) ? $this->enqueueOnPages : array( $hook );
+		$this->enqueueOnPages = ( ! empty( $this->enqueueOnPages ) ) ? $this->enqueueOnPages : [ $hook ];
 
 		if ( in_array( $hook, $this->enqueueOnPages ) ) :
 			foreach ( $this->enqueues as $enqueue ) :
@@ -150,16 +150,16 @@ class SettingsApi {
 
 		$adminPage = $this->adminPages[0];
 
-		$subpage = array(
-			array(
+		$subpage = [
+			[
 				'parent_slug' => $adminPage['menu_slug'],
 				'page_title'  => $adminPage['page_title'],
 				'menu_title'  => ( $title ) ? $title : $adminPage['menu_title'],
 				'capability'  => $adminPage['capability'],
 				'menu_slug'   => $adminPage['menu_slug'],
 				'callback'    => $adminPage['callback']
-			)
-		);
+			]
+		];
 
 		$this->adminSubpages = $subpage;
 

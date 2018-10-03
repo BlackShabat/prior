@@ -11,7 +11,7 @@ class Enqueue {
 	 * Register hooks and actions
 	 */
 	public function registerHooks() {
-		add_action( 'wp_enqueue_scripts', array( $this, 'enqueue_scripts' ) );
+		add_action( 'wp_enqueue_scripts', [ $this, 'enqueue_scripts' ] );
 	}
 
 	public function enqueue_scripts() {
