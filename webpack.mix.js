@@ -18,7 +18,7 @@ if ( process.env.sync ) {
     });
 }
 
-// Add versioning to assets in production environment
+// Add version to assets in production environment
 if ( mix.inProduction() ) {
     mix.version();
 }
