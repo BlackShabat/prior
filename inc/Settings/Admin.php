@@ -29,7 +29,7 @@ class Admin {
 				'capability' => 'manage_options',
 				'menuSlug'   => 'store',
 				'callback'   => function () {
-					echo '<div><h1>Store Admin Page</h1></div>';
+					require_once (get_template_directory() . '/admin/theme-options/index.php');
 				},
 				'iconUrl'    => 'dashicons-store',
 				'position'   => 110
