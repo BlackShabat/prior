@@ -11,7 +11,7 @@ class Init {
 		Setup\Setup::class,
 		Setup\Enqueue::class,
 		Plugins\Woocommerce::class,
-		Settings\Admin::class
+		ThemeOptions\ThemeOptions::class
 	];
 
 	/**

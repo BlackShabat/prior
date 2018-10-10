@@ -1,8 +1,10 @@
 <?php
 
-namespace Prior\Settings;
+namespace Prior\ThemeOptions;
 
-class Admin {
+use Prior\Api\Settings;
+
+class ThemeOptions {
 	/**
 	 * Store a new instance of the Settings API Class
 	 */
@@ -12,7 +14,7 @@ class Admin {
 	 * Constructor
 	 */
 	public function __construct() {
-		$this->settings = new SettingsApi();
+		$this->settings = new Settings();
 		$this->adminPages();
 		$this->settings->registerHooks();
 	}
@@ -29,7 +31,7 @@ class Admin {
 				'capability' => 'manage_options',
 				'menuSlug'   => 'store',
 				'callback'   => function () {
-					require_once (get_template_directory() . '/admin/theme-options/index.php');
+					require_once (__DIR__ . '/views/index.php');
 				},
 				'iconUrl'    => 'dashicons-store',
 				'position'   => 110
