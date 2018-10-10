@@ -3,12 +3,12 @@
  * Settings API
  */
 
-namespace Prior\Settings;
+namespace Prior\Api;
 
 /**
  * Settings API Class
  */
-class SettingsApi {
+class Settings {
 	/**
 	 * Settings array
 	 */

@@ -10,8 +10,7 @@ class Init {
 	private static $services = [
 		Setup\Setup::class,
 		Setup\Enqueue::class,
-		Plugins\Woocommerce::class,
-		ThemeOptions\ThemeOptions::class
+		Plugins\Woocommerce::class
 	];
 
 	/**
