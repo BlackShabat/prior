@@ -13,3 +13,5 @@ endif;
 if ( class_exists( 'Prior\\Init' ) ) :
 	Prior\Init::register_services();
 endif;
+
+require_once dirname( __FILE__ ) . '/blocks/hello-world/index.php';
