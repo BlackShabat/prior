@@ -2,6 +2,7 @@
 
 namespace Prior;
 
+
 class Init {
 	/**
 	 * Store all the classes inside an array
@@ -10,6 +11,8 @@ class Init {
 	private static $services = [
 		Setup\Setup::class,
 		Setup\Enqueue::class,
+		Setup\Sidebar::class,
+		Customizer\Customizer::class,
 		Plugins\Woocommerce::class
 	];
 
