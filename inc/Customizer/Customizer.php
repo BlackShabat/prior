@@ -6,7 +6,7 @@ class Customizer {
 
 	private $wp_customize;
 
-	private $fields = [
+	private static $fields = [
 		'header_rows_setting' => [ Header\RowsField::class, 'header_section' ],
 		'header_bg_setting'   => [ Header\BgColorField::class, 'header_section' ]
 	];
@@ -36,15 +36,18 @@ class Customizer {
 	}
 
 	private function addFields() {
-		foreach ( $this->fields as $setting => $field ) {
+		foreach ( self::$fields as $setting => $field ) {
 			if ( class_exists( $field[0] ) ) {
-				new $field[0]( $this->wp_customize, $setting, $field[1] );
+				$field[0]::register( $this->wp_customize, $setting, $field[1] );
 			}
 		}
 	}
 
-	public static function getSetting($setting) {
-		return get_theme_mod($setting);
+	public static function getSetting( $setting ) {
+		$settingClass = self::$fields[ $setting ][0];
+		$default      = isset( $settingClass ) ? $settingClass::$default : '';
+
+		return get_theme_mod( $setting, $default );
 	}
 
 }

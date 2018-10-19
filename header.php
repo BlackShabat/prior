@@ -26,3 +26,4 @@ $headerBg = \Prior\Customizer\Customizer::getSetting('header_bg_setting');
 $footerRows = \Prior\Customizer\Customizer::getSetting('header_footer_setting');
 dump($headerRows);
 dump($headerBg);
+dump($footerRows);
