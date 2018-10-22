@@ -44,6 +44,9 @@ class Customizer {
 	}
 
 	public static function getSetting( $setting ) {
+		if(!isset(self::$fields[ $setting ])) {
+			return null;
+		}
 		$settingClass = self::$fields[ $setting ][0];
 		$default      = isset( $settingClass ) ? $settingClass::$default : '';
 
