@@ -9,26 +9,10 @@
 
 	<?php wp_head(); ?>
 </head>
-<body <?php body_class( 'pl-body' ); ?>>
-<div class="pl-body__header">
-	<?php
+<body <?php body_class(); ?>>
 
-	global $wp_customizer;
+<?php do_action( 'prior_before_page' ); ?>
 
-	/*dump(get_theme_mods());
-	dump(get_theme_mod('header_rows_setting'));
-	dump(get_theme_mod('footer_rows_setting', 'lala'));*/
+<div class="pl-page">
 
-	$headerRows = \Prior\Customizer\Customizer::getSetting('header_rows_setting');
-	$headerBg = \Prior\Customizer\Customizer::getSetting('header_bg_setting');
-	$arows = \Prior\Customizer\Customizer::getSetting('header_advanced_rows');
-	dump(get_theme_mods());
-	/*remove_theme_mod('prior_main_header_bg');
-	remove_theme_mod('prior_main_header_cols');
-	remove_theme_mod('prior_before_header_cols');
-	remove_theme_mod('prior_main_header_cols_setting');
-	remove_theme_mod('prior_before_header_cols_setting');
-	remove_theme_mod('prior_before_header_bg_setting');*/
-
-	?>
-</div>
+	<?php do_action( 'prior_header' ); ?>

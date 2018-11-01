@@ -1,8 +1,13 @@
 @import "base/variables";
+@import "base/mixins";
 @import "base/reset";
 @import "base/body";
 @import "base/typo";
 
 @import "components/link";
 @import "components/button";
+
+@import "layouts/header";
+
+@import "wordpress/components";
 

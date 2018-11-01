@@ -1,0 +1,12 @@
+.pl-header {
+  background-color: rgba(30,39,49,.95);
+  padding: 25px 0;
+
+  &__container {
+    @include pr-container;
+  }
+
+  &__main {
+    display: flex;
+  }
+}

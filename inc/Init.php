@@ -12,8 +12,8 @@ class Init {
 		Setup\Setup::class,
 		Setup\Enqueue::class,
 		Setup\Sidebar::class,
-		Customizer\Customizer::class,
-		Plugins\Woocommerce::class
+		Plugins\Woocommerce::class,
+		Hooks\Actions::class
 	];
 
 	/**
