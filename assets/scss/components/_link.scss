@@ -2,6 +2,7 @@
 a {
   text-decoration: underline;
   color: steelblue;
+  transition: hover, .2s;
 
   &:hover {
     color: lighten(steelblue, 0.2);

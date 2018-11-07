@@ -12,7 +12,8 @@ class Actions {
 			'renderHeaderLayout' => 10
 		],
 		'prior_header_main' => [
-			'the_custom_logo' => 10
+			'the_custom_logo'      => 10,
+			'renderMainNavigation' => 20
 		]
 
 	];
@@ -38,5 +39,16 @@ class Actions {
 
 	public static function renderHeaderLayout() {
 		get_template_part( 'views/layouts/header' );
+	}
+
+	public static function renderMainNavigation() {
+		if ( has_nav_menu( 'main_menu' ) ) {
+			wp_nav_menu( [
+				'theme_location' => 'main_menu' ,
+				'container' => 'nav',
+				'container_class' => 'pc-nav pc-nav--light pc-nav--horizontal pc-nav--dropdown',
+				//'items_wrap' => '<nav class="pc-nav"><ul class="%2$s">%3$s</ul></nav>'
+			] );
+		}
 	}
 }

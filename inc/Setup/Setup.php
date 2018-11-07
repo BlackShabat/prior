@@ -15,10 +15,10 @@ class Setup {
 	}
 
 	public function setup() {
-		/* Multilingual support */
+		// Multilingual support
 		load_theme_textdomain( 'prior', get_template_directory() . '/languages' );
 
-		/* Default Theme Support options better have */
+		// Default Theme Support options better have
 		add_theme_support( 'automatic-feed-links' );
 		add_theme_support( 'title-tag' );
 		add_theme_support( 'post-thumbnails' );
@@ -36,7 +36,7 @@ class Setup {
 			'default-image' => '',
 		] ) );
 
-		/* Activate Post formats if you need */
+		// Activate Post formats if you need
 		add_theme_support( 'post-formats', [
 			'aside',
 			'gallery',
@@ -47,6 +47,14 @@ class Setup {
 			'video',
 			'audio',
 			'chat',
+		] );
+
+		// Register navigation menus
+		register_nav_menus( [
+			'top_menu'    => esc_html__( 'Top Bar', 'prior' ),
+			'main_menu'   => esc_html__( 'Main', 'prior' ),
+			'footer_menu' => esc_html__( 'Footer', 'prior' ),
+			'mobile_menu' => esc_html__( 'Mobile', 'prior' )
 		] );
 	}
 }

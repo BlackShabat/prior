@@ -1,0 +1,41 @@
+.pc-nav {
+
+  --link-color: #000;
+  --hover-color: #a4a8a9;
+  &--light {
+    --link-color: #fff;
+    --hover-color: #a4a8a9;
+  }
+
+  //First level link
+  & > .menu > .menu-item > a {
+    text-decoration: none;
+    font-size: .8rem;
+    text-transform: uppercase;
+    color: var(--link-color);
+
+    @at-root &.current_page_item a,
+    &:hover {
+      color: var(--hover-color);
+    }
+  }
+
+  &--dropdown {
+    .sub-menu {
+      display: none;
+    }
+  }
+
+  &--horizontal {
+    & > .menu {
+      display: flex;
+      flex-wrap: wrap;
+      margin: 0 -15px -15px;
+
+      & > * {
+        padding: 0 15px 15px;
+      }
+    }
+  }
+
+}
