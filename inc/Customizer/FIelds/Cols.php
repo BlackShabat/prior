@@ -40,4 +40,32 @@ class Cols {
 			]
 		] );
 	}
+
+	public static function registerSidebar( $setting, $section ) {
+		$main_header_cols = get_theme_mod( $setting );
+
+		if ( ! is_array( $main_header_cols ) ) {
+			return;
+		}
+
+		for ( $i = 1; $i <= count( $main_header_cols ); $i ++ ) {
+			register_sidebar( [
+				'name'          => esc_html__( self::idToName( $section, $i ), 'prior' ),
+				'id'            => $setting . '_col_' . $i,
+				'description'   => esc_html__( 'Widgets for main header area', 'prior' ),
+				'before_widget' => '<section id="%1$s" class="pc-' . $section . ' %2$s">',
+				'after_widget'  => '</section>',
+				'before_title'  => '<h2 class="pc-' . $section . '__title">',
+				'after_title'   => '</h2>',
+			] );
+		}
+	}
+
+	private static function idToName( $str, $count ) {
+		$str = str_replace( '_', ' ', $str );
+		$str = str_replace( [ 'prior', 'section' ], '', $str );
+		$str = $str . ' (col ' . $count . ')';
+
+		return $str;
+	}
 }

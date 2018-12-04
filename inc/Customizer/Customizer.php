@@ -14,13 +14,15 @@ class Customizer {
 	];
 
 	public function __construct() {
+
 		//Init Customizer only in customizer bar inside admin panel
-		if ( ! is_customize_preview() ) {
-			return;
+		if ( is_customize_preview() ) {
+			$this->addPanels();
+			$this->addSections();
+			$this->addFields();
 		}
-		$this->addPanels();
-		$this->addSections();
-		$this->addFields();
+
+		$this->registerSidebars();
 	}
 
 	private function addPanels() {
@@ -51,8 +53,17 @@ class Customizer {
 	private function addFields() {
 		foreach ( self::$fields as $setting => $field ) {
 			list( $controlClass, $section ) = $field;
-			if ( class_exists( $controlClass ) ) {
+			if ( method_exists( $controlClass, 'register' ) ) {
 				$controlClass::register( $setting, $section );
+			}
+		}
+	}
+
+	private function registerSidebars() {
+		foreach ( self::$fields as $setting => $field ) {
+			list( $controlClass, $section ) = $field;
+			if ( method_exists( $controlClass, 'registerSidebar' ) ) {
+				$controlClass::registerSidebar( $setting, $section );
 			}
 		}
 	}
