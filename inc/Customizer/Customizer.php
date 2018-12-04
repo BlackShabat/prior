@@ -7,10 +7,10 @@ use Kirki;
 class Customizer {
 
 	private static $fields = [
-		'prior_main_header_bg'     => [ Fields\BgColor::class, 'prior_main_header_section' ],
-		'prior_main_header_cols'   => [ Fields\Cols2::class, 'prior_main_header_section' ],
+		'prior_before_header_cols' => [ Fields\Cols::class, 'prior_before_header_section' ],
 		'prior_before_header_bg'   => [ Fields\BgColor::class, 'prior_before_header_section' ],
-		'prior_before_header_cols' => [ Fields\Cols::class, 'prior_before_header_section' ]
+		'prior_main_header_cols'   => [ Fields\Cols::class, 'prior_main_header_section' ],
+		'prior_main_header_bg'     => [ Fields\BgColor::class, 'prior_main_header_section' ]
 	];
 
 	public function __construct() {

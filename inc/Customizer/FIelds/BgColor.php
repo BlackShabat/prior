@@ -5,7 +5,6 @@ namespace Prior\Customizer\Fields;
 use Kirki;
 
 class BgColor {
-	public static $default = '';
 
 	public static function register( $setting, $section ) {
 		Kirki::add_field( $setting, [
@@ -13,7 +12,7 @@ class BgColor {
 			'settings' => $setting . '_setting',
 			'label'    => esc_attr__( 'Background Color', 'prior' ),
 			'section'  => $section,
-			'default'  => self::$default,
+			'default'  => '',
 			'priority' => 10
 		] );
 	}

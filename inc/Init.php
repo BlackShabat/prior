@@ -13,7 +13,8 @@ class Init {
 		Setup\Enqueue::class,
 		Setup\Sidebar::class,
 		Plugins\Woocommerce::class,
-		Hooks\Actions::class
+		Hooks\Actions::class,
+		Customizer\Customizer::class
 	];
 
 	/**
