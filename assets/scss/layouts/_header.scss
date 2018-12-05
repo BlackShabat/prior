@@ -1,12 +1,23 @@
 .pl-header {
-  background-color: rgba(30,39,49,.95);
-  padding: 25px 0;
+
+  &__before {
+    background-color: lightyellow;
+  }
+
+  &__main {
+    background-color: rgba(30,39,49,.95);
+    padding: 25px 0;
+  }
+
+  &__after {
+
+  }
 
   &__container {
     @include pr-container;
   }
 
-  &__main {
+  &__row {
     display: flex;
     justify-content: space-between;
     align-items: center;

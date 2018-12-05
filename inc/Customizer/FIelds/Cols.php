@@ -50,22 +50,31 @@ class Cols {
 
 		for ( $i = 1; $i <= count( $main_header_cols ); $i ++ ) {
 			register_sidebar( [
-				'name'          => esc_html__( self::idToName( $section, $i ), 'prior' ),
+				'name'          => esc_html__( self::sectionToName( $section, $i ), 'prior' ),
 				'id'            => $setting . '_col_' . $i,
 				'description'   => esc_html__( 'Widgets for main header area', 'prior' ),
-				'before_widget' => '<section id="%1$s" class="pc-' . $section . ' %2$s">',
-				'after_widget'  => '</section>',
-				'before_title'  => '<h2 class="pc-' . $section . '__title">',
+				'before_widget' => '<div class="pl-header__widget %2$s">',
+				'after_widget'  => '</div>',
+				'before_title'  => '<h2 class="pl-header__widget-title">',
 				'after_title'   => '</h2>',
 			] );
 		}
 	}
 
-	private static function idToName( $str, $count ) {
+	private static function sectionToName( $str, $count ) {
 		$str = str_replace( '_', ' ', $str );
 		$str = str_replace( [ 'prior', 'section' ], '', $str );
 		$str = $str . ' (col ' . $count . ')';
 
 		return $str;
 	}
+
+	private static function sectionToId( $str ) {
+		$str = str_replace( [ 'prior_', '_section' ], '', $str );
+		$str = str_replace( '_', '-', $str );
+
+		return $str;
+	}
+
+
 }

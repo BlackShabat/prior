@@ -9,11 +9,7 @@ class Actions {
 			'renderMobileNavigation' => 10
 		],
 		'prior_header'      => [
-			'renderHeaderLayout' => 10
-		],
-		'prior_header_main' => [
-			'the_custom_logo'      => 10,
-			'renderMainNavigation' => 20
+			'renderSidebar' => 10
 		]
 
 	];
@@ -44,11 +40,51 @@ class Actions {
 	public static function renderMainNavigation() {
 		if ( has_nav_menu( 'main_menu' ) ) {
 			wp_nav_menu( [
-				'theme_location' => 'main_menu' ,
-				'container' => 'nav',
+				'theme_location'  => 'main_menu',
+				'container'       => 'nav',
 				'container_class' => 'pc-nav pc-nav--light pc-nav--horizontal pc-nav--dropdown',
 				//'items_wrap' => '<nav class="pc-nav"><ul class="%2$s">%3$s</ul></nav>'
 			] );
 		}
+	}
+
+	public static function renderSidebar() {
+		$main_header_cols   = get_theme_mod( 'prior_main_header_cols' );
+		$before_header_cols = get_theme_mod( 'prior_before_header_cols' );
+		?>
+
+        <header class="pl-header">
+
+			<?php if ( is_array( $before_header_cols ) ): ?>
+                <div class="pl-header__before">
+                    <div class="pl-header__container">
+                        <div class="pl-header__row">
+							<?php for ( $i = 1; $i <= count( $before_header_cols ); $i ++ ): ?>
+                                <div class="pl-main-header__col">
+									<?php dynamic_sidebar( 'prior_before_header_cols_col_' . $i ); ?>
+                                </div>
+							<?php endfor; ?>
+                        </div>
+                    </div>
+                </div>
+			<?php endif; ?>
+
+	        <?php if ( is_array( $main_header_cols ) ): ?>
+                <div class="pl-header__main">
+                    <div class="pl-header__container">
+                        <div class="pl-header__row">
+					        <?php for ( $i = 1; $i <= count( $main_header_cols ); $i ++ ): ?>
+                                <div class="pl-main-header__col">
+							        <?php dynamic_sidebar( 'prior_main_header_cols_col_' . $i ); ?>
+                                </div>
+					        <?php endfor; ?>
+                        </div>
+                    </div>
+                </div>
+	        <?php endif; ?>
+
+        </header>
+
+		<?php
 	}
 }
