@@ -1,23 +1,23 @@
 {
     "_readme": [
         "This file locks the dependencies of your project to a known state",
-        "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
+        "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
     "content-hash": "9fb98a41f35eabbbc068d0c824b04373",
     "packages": [
         {
             "name": "aristath/kirki",
-            "version": "v3.0.34",
+            "version": "v3.0.35.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/aristath/kirki.git",
-                "reference": "8fb938f34e8093cbfa887ca9349898dd5a9084af"
+                "reference": "6f664660d136b4491ab77712e7f682b01cddeb2a"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/aristath/kirki/zipball/8fb938f34e8093cbfa887ca9349898dd5a9084af",
-                "reference": "8fb938f34e8093cbfa887ca9349898dd5a9084af",
+                "url": "https://api.github.com/repos/aristath/kirki/zipball/6f664660d136b4491ab77712e7f682b01cddeb2a",
+                "reference": "6f664660d136b4491ab77712e7f682b01cddeb2a",
                 "shasum": ""
             },
             "require": {
@@ -62,7 +62,7 @@
                 "customizer",
                 "wordpress"
             ],
-            "time": "2018-09-14T19:07:16+00:00"
+            "time": "2018-12-07T22:54:35+00:00"
         }
     ],
     "packages-dev": [],
