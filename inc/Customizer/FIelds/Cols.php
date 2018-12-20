@@ -53,9 +53,9 @@ class Cols {
 				'name'          => esc_html__( self::sectionToName( $section, $i ), 'prior' ),
 				'id'            => $setting . '_col_' . $i,
 				'description'   => esc_html__( 'Widgets for main header area', 'prior' ),
-				'before_widget' => '<div class="pl-header__widget %2$s">',
+				'before_widget' => '<div class="pc-widget %2$s">',
 				'after_widget'  => '</div>',
-				'before_title'  => '<h2 class="pl-header__widget-title">',
+				'before_title'  => '<h2 class="pc-widget__title">',
 				'after_title'   => '</h2>',
 			] );
 		}
