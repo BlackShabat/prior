@@ -9,7 +9,7 @@ class Actions {
 			'renderMobileNavigation' => 10
 		],
 		'prior_header'      => [
-			'renderSidebar' => 10
+			'renderGutenbergHeader' => 10
 		]
 
 	];
@@ -25,6 +25,18 @@ class Actions {
 				}
 			}
 		}
+	}
+
+	public static function renderGutenbergHeader() {
+		$header = new \WP_Query( [
+			'post_type' => 'prior-layouts',
+            'p' => 1907
+		] );
+		while ( $header->have_posts() ) {
+			$header->the_post();
+			the_content();
+		}
+		wp_reset_postdata();
 	}
 
 	public static function renderMobileNavigation() {
@@ -69,19 +81,19 @@ class Actions {
                 </div>
 			<?php endif; ?>
 
-	        <?php if ( is_array( $main_header_cols ) ): ?>
+			<?php if ( is_array( $main_header_cols ) ): ?>
                 <div class="pl-header__main">
                     <div class="pl-header__container">
                         <div class="pl-header__row">
-					        <?php for ( $i = 1; $i <= count( $main_header_cols ); $i ++ ): ?>
+							<?php for ( $i = 1; $i <= count( $main_header_cols ); $i ++ ): ?>
                                 <div class="pl-main-header__col">
-							        <?php dynamic_sidebar( 'prior_main_header_cols_col_' . $i ); ?>
+									<?php dynamic_sidebar( 'prior_main_header_cols_col_' . $i ); ?>
                                 </div>
-					        <?php endfor; ?>
+							<?php endfor; ?>
                         </div>
                     </div>
                 </div>
-	        <?php endif; ?>
+			<?php endif; ?>
 
         </header>
 
