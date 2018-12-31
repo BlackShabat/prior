@@ -17,7 +17,3 @@ endif;
 add_action( 'widgets_init', function () {
 	register_widget( Prior\Widgets\Navigation::class );
 } );
-
-//dump(get_theme_mod( 'nav_menu_locations' ));
-
-require_once dirname( __FILE__ ) . '/blocks/hello-world/index.php';

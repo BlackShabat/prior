@@ -30,7 +30,7 @@ class Actions {
 	public static function renderGutenbergHeader() {
 		$header = new \WP_Query( [
 			'post_type' => 'prior-layouts',
-            'p' => 1907
+            'p' => 1743
 		] );
 		while ( $header->have_posts() ) {
 			$header->the_post();
