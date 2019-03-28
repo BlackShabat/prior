@@ -49,6 +49,9 @@ class Setup {
 			'chat',
 		] );
 
+		// Add support for full and wide align images
+		add_theme_support('align-wide');
+
 		// Register navigation menus
 		register_nav_menus( [
 			'top_menu'    => esc_html__( 'Top Bar', 'prior' ),
