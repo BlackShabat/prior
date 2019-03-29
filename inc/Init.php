@@ -2,13 +2,13 @@
 
 namespace Prior;
 
-
 class Init {
 	/**
 	 * Store all the classes inside an array
 	 * @return array Full list of classes
 	 */
 	private static $services = [
+		Setup\Colors::class,
 		Setup\Setup::class,
 		Setup\Enqueue::class,
 		Setup\Sidebar::class,

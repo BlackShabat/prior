@@ -1,13 +1,18 @@
 <?php
 
-namespace Prior\Customizer\Fields;
+namespace Prior\Setup;
 
 use Kirki;
+use Prior\Api\Utils;
 
 class Colors {
 
 	private static $colorPalette = [];
 	private static $customizerFieldPrefix = 'prior_colors';
+
+	public function __construct() {
+		self::addPalette( Utils::getConfig( 'color-palette' ) );
+	}
 
 	public static function addPalette( $colors ) {
 

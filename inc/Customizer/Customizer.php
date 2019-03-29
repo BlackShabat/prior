@@ -3,7 +3,7 @@
 namespace Prior\Customizer;
 
 use Kirki;
-use Prior\Customizer\Fields\Colors;
+use Prior\Setup\Colors;
 
 class Customizer {
 
