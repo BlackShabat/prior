@@ -2,15 +2,11 @@
 
 namespace Prior\Setup;
 
+use \Prior\Customizer\Fields\Colors;
+
 class Setup {
 	public function __construct() {
-		$this->registerHooks();
-	}
-
-	/**
-	 * Register hooks and actions
-	 */
-	public function registerHooks() {
+		$this->config();
 		add_action( 'after_setup_theme', [ $this, 'setup' ] );
 	}
 
@@ -31,10 +27,6 @@ class Setup {
 			'gallery',
 			'caption',
 		] );
-		add_theme_support( 'custom-background', apply_filters( 'prior_custom_background_args', [
-			'default-color' => 'ffffff',
-			'default-image' => '',
-		] ) );
 
 		// Activate Post formats if you need
 		add_theme_support( 'post-formats', [
@@ -50,7 +42,7 @@ class Setup {
 		] );
 
 		// Add support for full and wide align images
-		add_theme_support('align-wide');
+		add_theme_support( 'align-wide' );
 
 		// Register navigation menus
 		register_nav_menus( [
@@ -58,6 +50,27 @@ class Setup {
 			'main_menu'   => esc_html__( 'Main', 'prior' ),
 			'footer_menu' => esc_html__( 'Footer', 'prior' ),
 			'mobile_menu' => esc_html__( 'Mobile', 'prior' )
+		] );
+	}
+
+	public function config() {
+		// Add support for custom color palettes
+		Colors::addPalette( [
+			[
+				'name'  => 'White',
+				'slug'  => 'white',
+				'color' => '#fff',
+			],
+			[
+				'name'  => 'Black',
+				'slug'  => 'black',
+				'color' => '#000',
+			],
+			[
+				'name'  => 'Primary',
+				'slug'  => 'primary',
+				'color' => '000',
+			]
 		] );
 	}
 }

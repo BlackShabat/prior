@@ -3,6 +3,7 @@
 namespace Prior\Customizer;
 
 use Kirki;
+use Prior\Customizer\Fields\Colors;
 
 class Customizer {
 
@@ -20,6 +21,7 @@ class Customizer {
 			$this->addPanels();
 			$this->addSections();
 			$this->addFields();
+			Colors::addCustomizerFields('priors_colors_section');
 		}
 
 		$this->registerSidebars();
@@ -33,20 +35,25 @@ class Customizer {
 	}
 
 	private function addSections() {
+		Kirki::add_section( 'priors_colors_section', array(
+			'title'    => __( 'Colors', 'prior' ),
+			'panel'    => 'prior',
+			'priority' => 10
+		) );
 		Kirki::add_section( 'prior_before_header_section', array(
 			'title'    => __( 'Before Header Layout', 'prior' ),
 			'panel'    => 'prior',
-			'priority' => 10
+			'priority' => 20
 		) );
 		Kirki::add_section( 'prior_main_header_section', array(
 			'title'    => __( 'Main Header Layout', 'prior' ),
 			'panel'    => 'prior',
-			'priority' => 20
+			'priority' => 30
 		) );
 		Kirki::add_section( 'prior_after_header_section', array(
 			'title'    => __( 'After Header', 'prior' ),
 			'panel'    => 'prior',
-			'priority' => 30
+			'priority' => 40
 		) );
 	}
 
