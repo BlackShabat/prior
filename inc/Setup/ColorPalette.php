@@ -5,7 +5,7 @@ namespace Prior\Setup;
 use Kirki;
 use Prior\Api\Utils;
 
-class Colors {
+class ColorPalette {
 
 	private static $colorPalette = [];
 	private static $customizerFieldPrefix = 'prior_colors';

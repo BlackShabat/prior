@@ -8,7 +8,7 @@ class Init {
 	 * @return array Full list of classes
 	 */
 	private static $services = [
-		Setup\Colors::class,
+		Setup\ColorPalette::class,
 		Setup\Setup::class,
 		Setup\Enqueue::class,
 		Setup\Sidebar::class,

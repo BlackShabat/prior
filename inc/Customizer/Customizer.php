@@ -3,7 +3,7 @@
 namespace Prior\Customizer;
 
 use Kirki;
-use Prior\Setup\Colors;
+use Prior\Setup\ColorPalette;
 
 class Customizer {
 
@@ -21,7 +21,7 @@ class Customizer {
 			$this->addPanels();
 			$this->addSections();
 			$this->addFields();
-			Colors::addCustomizerFields('priors_colors_section');
+			ColorPalette::addCustomizerFields('priors_colors_section');
 		}
 
 		$this->registerSidebars();
